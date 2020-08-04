@@ -15,35 +15,57 @@ const parent = active.parentNode;
 parent.insertBefore(jet, active);
 
 //dodaje flagę żeby umożliwić zmiany kształtu gracza (kółko lub krzyżyk)
-let flag = false;
+let flag = true;
+let count = 0;
+let random = 0;
 
-const a1 = document.getElementById('a1');
-const a2 = document.getElementById('a2');
-const a3 = document.getElementById('a3');
-const b1 = document.getElementById('b1');
-const b2 = document.getElementById('b2');
-const b3 = document.getElementById('b3');
-const c1 = document.getElementById('c1');
-const c2 = document.getElementById('c2');
-const c3 = document.getElementById('c3');
+const cell1 = document.getElementById('cell1');
+const cell2 = document.getElementById('cell2');
+const cell3 = document.getElementById('cell3');
+const cell4 = document.getElementById('cell4');
+const cell5 = document.getElementById('cell5');
+const cell6 = document.getElementById('cell6');
+const cell7 = document.getElementById('cell7');
+const cell8 = document.getElementById('cell8');
+const cell9 = document.getElementById('cell9');
 
-[a1, a2, a3, b1, b2, b3, c1, c2, c3].forEach((item) => {
+const play = (item) => {
     item.addEventListener('click', () => {
         /* funkcja która dodaje kółko lub krzyżyk w klikniętym polu */
-        if (item.childElementCount == 0) {
-            /* instrukcja warunkowa zapobiegająca dodawaniu więcej niż jednej figuty w jednym polu */
-            const shape = document.createElement('i');
-            if (flag) {
-                /* instrukcja warunkowa która decyduje jaką figurę ma aktualnie gracz */
-                shape.setAttribute('class', 'far fa-circle');
-            } else {
-                shape.setAttribute('class', 'fas fa-times');
+        if (count % 2 == 0) {
+            /* funkcja która pozwala graczowi dokonać tylko jednego ruchu pod rząd */
+            if (item.childElementCount == 0) {
+                /* instrukcja warunkowa zapobiegająca dodawaniu więcej niż jednej figuty w jednym polu */
+                const shape = document.createElement('i');
+                if (flag) {
+                    /* instrukcja warunkowa która decyduje jaką figurę ma aktualnie gracz */
+                    shape.setAttribute('class', 'far fa-circle');
+                } else {
+                    shape.setAttribute('class', 'fas fa-times');
+                }
+                item.appendChild(shape);
+                count += 1;
+                random = Math.floor(Math.random() * 9);
+                if ('cell' + random != item.id) {
+                    // console.log(item.id);
+                    // console.log(random)
+                    if (cells[random].childElementCount == 0) {
+                        const shape = document.createElement('i');
+                        if (flag) {
+                            shape.setAttribute('class', 'fas fa-times');
+                        } else {
+                            shape.setAttribute('class', 'far fa-circle');
+                        }
+                        item.appendChild(shape);
+                        count += 1;
+                    }
+
+                }
+                // console.log(item.id);
             }
-            // console.log(item.childElementCount)
-            item.appendChild(shape);
         }
-
-
-
     })
-})
+}
+
+let cells = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9];
+cells.forEach(play);

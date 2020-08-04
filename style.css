@@ -56,11 +56,10 @@ div#main {
 }
 
 div.inner {
-    /* border: 1px solid red; */
     width: calc(var(--size)/3);
     height: calc(var(--size)/3);
     text-align: center;
-    line-height: calc(var(--size)/3);
+    position: relative;
 }
 
 
@@ -87,6 +86,13 @@ h3:hover {
 
 .fa-circle,
 .fa-times {
+    position: absolute;
     font-size: calc(var(--size)/5);
-    padding-top: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
