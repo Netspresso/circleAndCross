@@ -59,7 +59,10 @@ div.inner {
     /* border: 1px solid red; */
     width: calc(var(--size)/3);
     height: calc(var(--size)/3);
+    text-align: center;
+    line-height: calc(var(--size)/3);
 }
+
 
 div.inner:hover {
     box-shadow: inset 0 0 15px gold;
@@ -80,4 +83,10 @@ div#dificulity {
 h3:hover {
     cursor: pointer;
     color: gold;
+}
+
+.fa-circle,
+.fa-times {
+    font-size: calc(var(--size)/5);
+    padding-top: 15px;
 }
